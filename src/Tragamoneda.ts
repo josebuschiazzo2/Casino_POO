@@ -25,4 +25,4 @@ export abstract class Tragamoneda {
 
     abstract apostar():void;
 
-}
+} // fin clase
