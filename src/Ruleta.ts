@@ -12,15 +12,17 @@ Estas normas se cumplen en la ruleta europea (con un cero), pero no en la americ
 
 *Tabla de apuestas y pagos en la ruleta //lo dejo en (color, ParImpar, Columna, Docena, Cuadro y pleno)
 
-Apuestas	        Números que juega	    Pago
-Color o ParImpar   	18 números	            2×1	
-Columnas o docenas	12 números	            3×1
-Cuadro	            4 números	            9×1	
-Pleno	            1 número                36×1	
+N° de juego             Números que juega	    Elección        Pago
+1.Color                 18 números              Rojo o Negro    2×1
+2.ParImpar   	        18 números	            Par o Impar     2×1	
+3.Columnas 	            12 números	            1, 2 o 3        3×1
+4. Docenas	            12 números	            1, 2 o 3        3×1
+5.Cuadro	            4 números	            del 1 al 24     9×1	
+6.Pleno	                1 número                del 1 a 36      36×1	
 */
 
-export class Ruleta extends Tragamoneda implements Maquina{
-	
+export class Ruleta extends Tragamoneda implements Maquina
+{
 
 	constructor(nombre: string,apuesta: number,probabilidad: number)
     {
@@ -28,20 +30,19 @@ export class Ruleta extends Tragamoneda implements Maquina{
 		this.nombre = nombre;
         this.apuesta = apuesta;
         this.probabilidad = probabilidad;
-		
 	}
 
-	setApuesta(number: any): void 
+    setApuesta(number: any): void 
     {
 		throw new Error("Method not implemented.");
-	}
+	} 
 	
     getPremio(): number 
     {
 		throw new Error("Method not implemented.");
 	}
 
-	lanzarRuleta() 
+	lanzarRuleta():any[]
     {
 		const max = 36;
 		const min = 0;
@@ -363,14 +364,14 @@ export class Ruleta extends Tragamoneda implements Maquina{
 				break;
 		}
 
-        console.log(color + " el " + casilla + ", " + par + " " + docena + " " + columna);
+        console.log(color + " el " + casilla + "(Par:" + par + " - Docena:" + docena + " - Columna:" + columna + ")");
+        return [color,casilla,par,docena,columna,cuadro];
     }
 	
 		  
 
-    apostar() {
-
+    apostar() 
+    {
 	throw new Error("Function not implemented.");
-
 	}
 } // fin clase Ruleta

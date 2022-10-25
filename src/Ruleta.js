@@ -39,6 +39,7 @@ var Ruleta = /** @class */ (function (_super) {
         _this.nombre = nombre;
         _this.apuesta = apuesta;
         _this.probabilidad = probabilidad;
+        
         return _this;
     }
     Ruleta.prototype.setApuesta = function (number) {
