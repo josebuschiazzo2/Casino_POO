@@ -3,16 +3,19 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
 exports.__esModule = true;
+exports.Ruleta = void 0;
 var Tragamoneda_1 = require("./Tragamoneda");
 /*En ese diseño, el orden se basa en las siguientes normas:
 
@@ -26,11 +29,13 @@ Estas normas se cumplen en la ruleta europea (con un cero), pero no en la americ
 
 *Tabla de apuestas y pagos en la ruleta //lo dejo en (color, ParImpar, Columna, Docena, Cuadro y pleno)
 
-Apuestas	        Números que juega	    Pago
-Color o ParImpar   	18 números	            2×1
-Columnas o docenas	12 números	            3×1
-Cuadro	            4 números	            9×1
-Pleno	            1 número                36×1
+N° de juego             Números que juega	    Elección        Pago
+1.Color                 18 números              Rojo o Negro    2×1
+2.ParImpar   	        18 números	            Par o Impar     2×1
+3.Columnas 	            12 números	            1, 2 o 3        3×1
+4. Docenas	            12 números	            1, 2 o 3        3×1
+5.Cuadro	            4 números	            del 1 al 24     9×1
+6.Pleno	                1 número                del 1 a 36      36×1
 */
 var Ruleta = /** @class */ (function (_super) {
     __extends(Ruleta, _super);
@@ -39,7 +44,6 @@ var Ruleta = /** @class */ (function (_super) {
         _this.nombre = nombre;
         _this.apuesta = apuesta;
         _this.probabilidad = probabilidad;
-        
         return _this;
     }
     Ruleta.prototype.setApuesta = function (number) {
@@ -325,7 +329,8 @@ var Ruleta = /** @class */ (function (_super) {
                 console.log("algo mál no ha salido bien");
                 break;
         }
-        console.log(color + " el " + casilla + ", " + par + " " + docena + " " + columna);
+        console.log(color + " el " + casilla + "(Par:" + par + " - Docena:" + docena + " - Columna:" + columna + ")");
+        return [color, casilla, par, docena, columna, cuadro];
     };
     Ruleta.prototype.apostar = function () {
         throw new Error("Function not implemented.");
