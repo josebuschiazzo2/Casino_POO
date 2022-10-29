@@ -61,9 +61,9 @@ export class Dado extends Tragamoneda {
 		return this.premio;
 	}
 	
-	/*obtenerApuesta(apuesta: number): void {
+	setApuesta(apuesta: number): void {
 		this.apuesta = apuesta;
-	}*/
+	}
 	
 
    
