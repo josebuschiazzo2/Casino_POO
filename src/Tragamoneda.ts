@@ -10,7 +10,9 @@ export abstract class Tragamoneda {
         this.apuesta = apuesta;
         this.probabilidad = probabilidad;
     }
-    
+    obtenerNombre():string{
+        return this.nombre;
+    }
     obtenerApuesta(){
         return this.apuesta;
     }

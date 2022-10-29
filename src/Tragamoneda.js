@@ -8,6 +8,9 @@ var Tragamoneda = /** @class */ (function () {
         this.apuesta = apuesta;
         this.probabilidad = probabilidad;
     }
+    Tragamoneda.prototype.obtenerNombre = function () {
+        return this.nombre;
+    };
     Tragamoneda.prototype.obtenerApuesta = function () {
         return this.apuesta;
     };

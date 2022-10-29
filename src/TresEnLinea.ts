@@ -30,7 +30,7 @@ export class TresEnLinea extends Tragamoneda implements Maquina{
 		return posRodillo;
 	}
 
-	Girar():string{
+	public girar():string{
 		return this.rodillo1[this.posicionRodillo()] + "--" + this.rodillo2[this.posicionRodillo()] + "--" + this.rodillo3[this.posicionRodillo()];
 	}
 
