@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var JuegoDeDados_1 = require("./JuegoDeDados");
 var Ruleta_1 = require("./Ruleta");
+
 var TresEnLinea_1 = require("./TresEnLinea");
 var readlineSync = require('readline-sync');
 var juegoDeDados1 = new JuegoDeDados_1.Dado("juego de dados", 1, 0.5);
@@ -28,3 +29,6 @@ else {
 }
 var index = readlineSync.keyInSelect(juegos, 'Que Juego?');
 console.log('Ok, ' + juegos[index] + ' goes to your room.');
+
+
+

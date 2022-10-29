@@ -8,11 +8,10 @@ var readlineSync = require('readline-sync');
 let juegoDeDados1:Dado = new Dado("juego de dados",1,0.5);
 let juegoDeRuleta1:Ruleta= new Ruleta("Pleno",1,12);
 let Fruits:TresEnLinea= new TresEnLinea("Pleno",1,12);
-
 let juegos = new Array<Tragamoneda>
 juegos = [Fruits,juegoDeRuleta1,juegoDeDados1]; // array de prueba
 console.log(juegoDeDados1.lanzarDados());
-console.log(juegoDeRuleta1.lanzarRuleta());
+// console.log(juegoDeRuleta1.lanzarRuleta());
 
 console.log(Fruits.girar());
 /*case 2 USAR SWITCH CASE
