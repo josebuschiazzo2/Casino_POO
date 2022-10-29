@@ -1,12 +1,16 @@
 "use strict";
 //  clase padre
 exports.__esModule = true;
+exports.Tragamoneda = void 0;
 var Tragamoneda = /** @class */ (function () {
     function Tragamoneda(nombre, apuesta, probabilidad) {
         this.nombre = nombre;
         this.apuesta = apuesta;
         this.probabilidad = probabilidad;
     }
+    Tragamoneda.prototype.obtenerNombre = function () {
+        return this.nombre;
+    };
     Tragamoneda.prototype.obtenerApuesta = function () {
         return this.apuesta;
     };

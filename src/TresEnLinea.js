@@ -42,7 +42,7 @@ var TresEnLinea = /** @class */ (function (_super) {
         var posRodillo = Math.floor(Math.random() * (5 - 0 + 1) + 0);
         return posRodillo;
     };
-    TresEnLinea.prototype.Girar = function () {
+    TresEnLinea.prototype.girar = function () {
         return this.rodillo1[this.posicionRodillo()] + "--" + this.rodillo2[this.posicionRodillo()] + "--" + this.rodillo3[this.posicionRodillo()];
     };
     return TresEnLinea;
