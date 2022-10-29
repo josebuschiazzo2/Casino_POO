@@ -17,8 +17,8 @@ export class TresEnLinea extends Tragamoneda implements Maquina{
 	setApuesta(cantidad: number): void {
 		this.apuesta = cantidad;
 	}
-	getPremio(premio: number): void {
-		throw new Error('Method not implemented.');
+	getPremio(): number {
+		return this.apuesta * 3; // el 3 debe ser una variable  dependiendo del switch case 
 	}
 
 	apostar(): void {
@@ -32,7 +32,12 @@ export class TresEnLinea extends Tragamoneda implements Maquina{
 
 	public girar():string{
 		return this.rodillo1[this.posicionRodillo()] + "--" + this.rodillo2[this.posicionRodillo()] + "--" + this.rodillo3[this.posicionRodillo()];
+
+		/* realizar los condicionales y devolver los premios
+		utilizar switch case*/
+
 	}
+
 
 	
 } 
