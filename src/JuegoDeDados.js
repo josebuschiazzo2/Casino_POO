@@ -26,11 +26,7 @@ Las apuestas a esta opción no se pueden modificar hasta concluir la jugada.
 var Dado = /** @class */ (function (_super) {
     __extends(Dado, _super);
     function Dado(nombre, apuesta, probabilidad) {
-        var _this = _super.call(this, nombre, apuesta, probabilidad) || this;
-        _this.nombre = nombre;
-        _this.apuesta = apuesta;
-        _this.probabilidad = probabilidad;
-        return _this;
+        return _super.call(this, nombre, apuesta, probabilidad) || this;
     }
     Dado.prototype.lanzarDados = function () {
         var max = 6;
@@ -38,14 +34,12 @@ var Dado = /** @class */ (function (_super) {
         var dado1;
         var dado2;
         var resultado;
-        var premio;
         dado1 = Math.floor(Math.random() * (max - min + 1) + min);
         dado2 = Math.floor(Math.random() * (max - min + 1) + min);
         console.log("Lanzamiento de los dados");
         console.log("dado 1 = ", dado1);
         console.log("dado 2 = ", dado2);
         resultado = dado1 + dado2;
-        //console.log("La suma de los dados es : ", resultado)
         switch (resultado) {
             case 7:
             case 11:
@@ -66,12 +60,6 @@ var Dado = /** @class */ (function (_super) {
     };
     Dado.prototype.getPremio = function () {
         return this.premio;
-    };
-    Dado.prototype.setApuesta = function (apuesta) {
-        this.apuesta = apuesta;
-    };
-    Dado.prototype.apostar = function () {
-        throw new Error('Method not implemented.');
     };
     return Dado;
 }(Tragamoneda_1.Tragamoneda)); // fin clase Dado

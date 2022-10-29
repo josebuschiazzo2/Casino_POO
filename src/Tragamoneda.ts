@@ -25,6 +25,6 @@ export abstract class Tragamoneda {
         return this.probabilidad;
     }
 
-    abstract apostar():void;
+   // abstract apostar():void;   ESTA DE MAS!
 
 } // fin clase

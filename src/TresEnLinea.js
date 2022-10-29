@@ -32,8 +32,8 @@ var TresEnLinea = /** @class */ (function (_super) {
     TresEnLinea.prototype.setApuesta = function (cantidad) {
         this.apuesta = cantidad;
     };
-    TresEnLinea.prototype.getPremio = function (premio) {
-        throw new Error('Method not implemented.');
+    TresEnLinea.prototype.getPremio = function () {
+        return this.apuesta * 3; // el 3 debe ser una variable  dependiendo del switch case 
     };
     TresEnLinea.prototype.apostar = function () {
         throw new Error('Method not implemented.');
@@ -44,6 +44,8 @@ var TresEnLinea = /** @class */ (function (_super) {
     };
     TresEnLinea.prototype.girar = function () {
         return this.rodillo1[this.posicionRodillo()] + "--" + this.rodillo2[this.posicionRodillo()] + "--" + this.rodillo3[this.posicionRodillo()];
+        /* realizar los condicionales y devolver los premios
+        utilizar switch case*/
     };
     return TresEnLinea;
 }(Tragamoneda_1.Tragamoneda));

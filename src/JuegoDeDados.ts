@@ -1,4 +1,3 @@
-import { Maquina } from './Maquina';
 import { Tragamoneda } from './Tragamoneda';
 
 /* El juego de Craps se juega con dos dados. Se lanzarán dos dados en cada partida.
@@ -8,19 +7,14 @@ hasta que se llegue a una decisión (gana o pierde).
 Las apuestas a esta opción no se pueden modificar hasta concluir la jugada.
 */
 
-export class Dado extends Tragamoneda implements Maquina{
+export class Dado extends Tragamoneda {
+	premio: number; //implements Maquina
 	
 	
-	private premio:number; // no se si va aca el premio ¿¿¿???
-
 	constructor(nombre: string,apuesta: number,probabilidad: number){
 		super(nombre,apuesta,probabilidad);
-		this.nombre = nombre;
-        this.apuesta = apuesta;
-        this.probabilidad = probabilidad;
-		
-		
-	}
+				
+		}
 
 	lanzarDados() { //min: number, max: number
 		const max = 6;
@@ -28,8 +22,6 @@ export class Dado extends Tragamoneda implements Maquina{
 		let dado1:number;
 		let dado2:number;
 		let resultado: number;
-		let premio: number;
-		
 		
 		dado1 = Math.floor(Math.random() * (max - min + 1) + min);
 		dado2 = Math.floor(Math.random() * (max - min + 1) + min);
@@ -40,9 +32,7 @@ export class Dado extends Tragamoneda implements Maquina{
 		console.log("dado 2 = ",dado2)
 		
 		resultado = dado1 + dado2;
-		//console.log("La suma de los dados es : ", resultado)
-
-
+	
 		switch (resultado) {
 			case  7:
 			case  11:	
@@ -75,9 +65,7 @@ export class Dado extends Tragamoneda implements Maquina{
 		this.apuesta = apuesta;
 	}
 	
-	apostar(): void {
-		throw new Error('Method not implemented.');
-	}
+
    
 } // fin clase Dado
 
