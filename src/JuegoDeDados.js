@@ -26,24 +26,37 @@ Las apuestas a esta opción no se pueden modificar hasta concluir la jugada.
 var Dado = /** @class */ (function (_super) {
     __extends(Dado, _super);
     function Dado(nombre, apuesta, probabilidad) {
-        return _super.call(this, nombre, apuesta, probabilidad) || this;
+        var _this = _super.call(this, nombre, apuesta, probabilidad) || this;
+        _this.winner = 0;
+        return _this;
     }
+    Dado.prototype.getPremio = function () {
+        return this.apuesta * this.winner;
+    };
+    Dado.prototype.setApuesta = function (apuesta) {
+        this.apuesta = apuesta;
+    };
     Dado.prototype.lanzarDados = function () {
         var max = 6;
         var min = 1;
         var dado1;
         var dado2;
         var resultado;
+        var winner;
         dado1 = Math.floor(Math.random() * (max - min + 1) + min);
         dado2 = Math.floor(Math.random() * (max - min + 1) + min);
-        console.log("Lanzamiento de los dados");
+        console.log("Lanzamiento de dados");
         console.log("dado 1 = ", dado1);
         console.log("dado 2 = ", dado2);
         resultado = dado1 + dado2;
         switch (resultado) {
             case 7:
+                this.winner = 5;
+                console.log("ha salido ", resultado, " Felicitaciones usted ha ganado $$", this.apuesta * this.winner); // winner multiplica la apuesta en getPremio
+                break;
             case 11:
-                console.log("ha salido ", resultado, " Felicitaciones usted ha ganado $$", this.apuesta * 2); // falta mostra el premio
+                this.winner = 15;
+                console.log("ha salido ", resultado, " Felicitaciones usted ha ganado $$", this.apuesta * this.winner); // winner multiplica la apuesta en getPremio
                 break;
             case 4:
             case 5:
@@ -51,15 +64,15 @@ var Dado = /** @class */ (function (_super) {
             case 8:
             case 10:
                 console.log("ha salido ", resultado, "No ha ganado ningun premio pero usted puede lanzar nuevamente");
+                console.log("*******");
+                console.log("su siguiente lanzamiento es: ");
+                this.lanzarDados();
                 break;
             default:
                 console.log("ha salido ", resultado, "**CRAPS** usted ah perdido");
                 break;
         }
         return resultado;
-    };
-    Dado.prototype.getPremio = function () {
-        return this.premio;
     };
     return Dado;
 }(Tragamoneda_1.Tragamoneda)); // fin clase Dado

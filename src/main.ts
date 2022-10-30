@@ -26,7 +26,7 @@ console.log('Bienvenido ' + userName + '!');
 
 var apuesta = readlineSync.question('¿cuanto quiere apostar? ');
 
-  // readline para elegir opciones de un arreglo y elegir el juego
+// readline para elegir opciones de un arreglo y elegir el juego
 
 let index:string = readlineSync.keyInSelect(juegos, 'Elija el Juego');
 
@@ -52,14 +52,14 @@ switch (index) {
     
 
 //Readline para Preguntar Si o No Y/N
-if (readlineSync.keyInYN('Quieres jugar a ' + Fruits.obtenerNombre() + "?")) {
+if (readlineSync.keyInYN('Quieres jugar a ' + juegoDeDados1.obtenerNombre() + "?")) {
     // 'Y' key was pressed.
-    Fruits.setApuesta(apuesta); 
-    console.log('iniciando ' + Fruits.obtenerNombre());
+    juegoDeDados1.setApuesta(apuesta); 
+    console.log('iniciando ' + juegoDeDados1.obtenerNombre());
     console.log("-------");
-    console.log('Su jugada es ' + Fruits.girar());
+    console.log('Su jugada es ' + juegoDeDados1.lanzarDados());
     console.log("-------");
-    console.log(Fruits.getPremio());
+    console.log("este es el premio ",juegoDeDados1.getPremio());
     // Do something...
   } else {
     // Another key was pressed.
