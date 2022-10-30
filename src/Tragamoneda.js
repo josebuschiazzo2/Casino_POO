@@ -1,7 +1,6 @@
 "use strict";
 //  clase padre
 exports.__esModule = true;
-exports.Tragamoneda = void 0;
 var Tragamoneda = /** @class */ (function () {
     function Tragamoneda(nombre, apuesta, probabilidad) {
         this.nombre = nombre;

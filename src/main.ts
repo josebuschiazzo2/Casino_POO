@@ -22,7 +22,7 @@ function jugar(){
 
 
 let juegoDeDados1:Dado = new Dado("juego de dados",1,0.5);
-let juegoDeRuleta1:Ruleta= new Ruleta("Ruleta",1,12);
+let juegoDeRuleta1:Ruleta= new Ruleta("Color",1,1);
 let fruits:TresEnLinea= new TresEnLinea("Tres en linea",10,2);
 let juegos = new Array<string>
 juegos = [juegoDeDados1.obtenerNombre(),juegoDeRuleta1.obtenerNombre(),fruits.obtenerNombre()]; // array de prueba
