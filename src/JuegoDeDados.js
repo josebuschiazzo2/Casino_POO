@@ -61,6 +61,9 @@ var Dado = /** @class */ (function (_super) {
     Dado.prototype.getPremio = function () {
         return this.premio;
     };
+    Dado.prototype.setApuesta = function (apuesta) {
+        this.apuesta = apuesta;
+    };
     return Dado;
 }(Tragamoneda_1.Tragamoneda)); // fin clase Dado
 exports.Dado = Dado;
