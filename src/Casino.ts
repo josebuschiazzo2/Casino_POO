@@ -1,6 +1,4 @@
-import { Ruleta } from "./Ruleta";
 import { Tragamoneda } from "./Tragamoneda";
-import { TresEnLinea } from "./TresEnLinea";
 
 export class Casino {
     private nombre: string;
@@ -8,6 +6,27 @@ export class Casino {
 
     constructor(nombre:string){
         this.nombre = nombre;
-        this.juegos = [juego .Ruleta,TresEnLinea]
     }
+
+    agregarJuegos(juego:Tragamoneda):void{
+        this.juegos.push(juego);
+    }
+
+    eliminarJuego(juego:Tragamoneda):void{
+        for (let index:number = 0; index < this.juegos.length; index++) {
+            if (juego.obtenerNombre() === this.juegos[index].obtenerNombre()) {
+                this.juegos.splice(index,1)  
+            }   
+        }
+    }
+
+    obtenerNombre():string{
+        return this.nombre;
+    }
+
+    modificarNombre(nuevoNombre:string){
+        this.nombre = nuevoNombre;
+    }
+
+    
 }
