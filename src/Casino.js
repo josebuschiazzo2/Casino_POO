@@ -1,27 +1,36 @@
 "use strict";
 exports.__esModule = true;
-exports.Casino = void 0;
+var Tragamoneda_1 = require("./Tragamoneda");
 var Casino = /** @class */ (function () {
-    function Casino(nombre) {
-        this.juegos = new Array;
-        this.nombre = nombre;
+    function Casino() {
+        this.juegos = new Array < Tragamoneda_1.Tragamoneda >
+            constructor(nombre, string);
     }
-    Casino.prototype.agregarJuegos = function (juego) {
-        this.juegos.push(juego);
-    };
-    Casino.prototype.eliminarJuego = function (juego) {
-        for (var index = 0; index < this.juegos.length; index++) {
-            if (juego.obtenerNombre() === this.juegos[index].obtenerNombre()) {
-                this.juegos.splice(index, 1);
-            }
-        }
-    };
-    Casino.prototype.obtenerNombre = function () {
-        return this.nombre;
-    };
-    Casino.prototype.modificarNombre = function (nuevoNombre) {
-        this.nombre = nuevoNombre;
-    };
     return Casino;
 }());
 exports.Casino = Casino;
+{
+    this.nombre = nombre;
+}
+agregarJuegos(juego, Tragamoneda_1.Tragamoneda);
+void {
+    "this": .juegos.push(juego)
+};
+eliminarJuego(juego, Tragamoneda_1.Tragamoneda);
+void {
+    : .juegos.length, index: index
+}++;
+{
+    if (juego.obtenerNombre() === this.juegos[index].obtenerNombre()) {
+        this.juegos.splice(index, 1);
+    }
+}
+obtenerNombre();
+string;
+{
+    return this.nombre;
+}
+modificarNombre(nuevoNombre, string);
+{
+    this.nombre = nuevoNombre;
+}

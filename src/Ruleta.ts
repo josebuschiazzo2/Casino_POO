@@ -12,34 +12,51 @@ Estas normas se cumplen en la ruleta europea (con un cero), pero no en la americ
 
 *Tabla de apuestas y pagos en la ruleta //lo dejo en (color, ParImpar, Columna, Docena, Cuadro y pleno)
 
-N° de juego             Números que juega	    Elección        Pago
-1.Color                 18 números              Rojo o Negro    2×1
-2.ParImpar   	        18 números	            Par o Impar     2×1	
-3.Columnas 	            12 números	            1, 2 o 3        3×1
-4. Docenas	            12 números	            1, 2 o 3        3×1
-5.Cuadro	            4 números	            del 1 al 24     9×1	
-6.Pleno	                1 número                del 1 a 36      36×1	
+Juego (this.nombre)    Números que juega	    Elección (this.probabilidad)        Pago (get.premio)
+1.Color                 18 números              Rojo o Negro                        2×1
+2.ParImpar   	        18 números	            Par o Impar                         2×1	
+3.Columnas 	            12 números	            1, 2 o 3                            3×1
+4. Docenas	            12 números	            1, 2 o 3                            3×1
+5.Cuadro	            4 números	            del 1 al 24                         9×1	
+6.Pleno	                1 número                del 1 a 36                          36×1	
 */
 
 export class Ruleta extends Tragamoneda implements Maquina
 {
+    //esto es un parche para poder sacar el premio (ver comentarios del constructor)
+    ccasilla:number; //lo llamo con "c" inicial porque son variable de la clase
+    ccolor:number; //"0"->Negro y "1"->Rojo le pongo nombre porque en la this.probabilidad te da lo que apostas en number
+    cpar:number;
+    cdocena:number;
+    ccolumna:number;
+    ccuadro:number[];
+  
+    constructor(nombre: string,apuesta: number,probabilidad: number)
+    /*para este Juego:
+    - Nombre puede ser "Casilla", "Color", etc
+    - Apuesta es la plata que se apuesta
+    - Probabilidad: va a ser el nùmero de casilla, columna o color */
 
-	constructor(nombre: string,apuesta: number,probabilidad: number)
     {
 		super(nombre,apuesta,probabilidad);
-		this.nombre = nombre;
-        this.apuesta = apuesta;
-        this.probabilidad = probabilidad;
 	}
 
-    setApuesta(number: any): void 
+    setApuesta(papuesta:number): void 
     {
-		throw new Error("Method not implemented.");
+		this.apuesta=papuesta;
 	} 
 	
     getPremio(): number 
     {
-		throw new Error("Method not implemented.");
+		let premio:number=0;
+        if ((this.nombre=="color" || this.nombre=="Color") && this.ccolor==this.probabilidad) premio=this.apuesta*2;
+        if ((this.nombre=="parimpar" || this.nombre=="ParImpar") && this.cpar==this.probabilidad) premio=this.apuesta*2;
+        if ((this.nombre=="columna" || this.nombre=="Columna") && this.ccolumna==this.probabilidad) premio=this.apuesta*3;
+        if ((this.nombre=="docena" || this.nombre=="Docena") && this.cdocena==this.probabilidad) premio=this.apuesta*3;
+        for(let i=0;i<4;i++) if ((this.nombre=="cuadro" || this.nombre=="Cuadro") && this.ccuadro[i]==this.probabilidad) premio=this.apuesta*9;
+        if ((this.nombre=="pleno" || this.nombre=="Pleno") && this.ccasilla==this.probabilidad) premio=this.apuesta*36;
+
+        return premio;
 	}
 
 	lanzarRuleta():any[]
@@ -50,12 +67,9 @@ export class Ruleta extends Tragamoneda implements Maquina
 		let color:string="Neutro";       // Rojo, Negro, neutro (que sea impar no significa que sea rojo, por ejemplo el 10 y 11 son Negro both)
         let par:boolean=true;        //Par o impar
         let docena:number=0;      // hay 3 docenas y el cero no entra
-        let columna: Number=0;    // hay 3 Columnas y el cero no entra
+        let columna: number=0;    // hay 3 Columnas y el cero no entra
         let cuadro:number[]= [0,0,0,0];      // hay 24 cuadros pero una casilla puede tener hasta 4 cuadros y el cero no entra
-      	let premio: number;
-		
-		
-		casilla = Math.floor(Math.random() * (max - min + 1) + min); //casilla = Math.floor(Math.random() * (max + 1));
+    	casilla = Math.floor(Math.random() * (max - min + 1) + min); //casilla = Math.floor(Math.random() * (max + 1));
 		
 		console.log("Lanzamiento de bola..... no va más!!");
         setTimeout(() => {console.log(".........")},500);
@@ -364,13 +378,26 @@ export class Ruleta extends Tragamoneda implements Maquina
 				break;
 		}
 
+
+        //Parche para sacar el premio
+            this.ccasilla=casilla; 
+            
+            if (color=="Rojo")this.ccolor= 1; //"0"->Negro y "1"->Rojo le pongo nombre porque en la this.probabilidad te da lo que apostas en number
+                else this.ccolor=0;
+            
+            if (par) this.cpar=1;
+                else this.cpar=0;
+
+            this.cdocena=docena;
+            this.ccolumna=columna;
+            this.ccuadro=cuadro;
+        //fin de parche
+        
         console.log(color + " el " + casilla + "(Par:" + par + " - Docena:" + docena + " - Columna:" + columna + ")");
         return [color,casilla,par,docena,columna,cuadro];
-    }
+    } //fin de LanzarRuleta()
 	
-		  
-
-    apostar() 
+	apostar() 
     {
 	throw new Error("Function not implemented.");
 	}
