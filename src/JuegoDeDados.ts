@@ -64,7 +64,7 @@ export class Dado extends Tragamoneda {
 				console.log("ha salido ",resultado, "No ha ganado ningun premio pero usted puede lanzar nuevamente")
 				console.log("*******");
 				console.log("su siguiente lanzamiento es: ");
-				this.lanzarDados(); 
+				//this.lanzarDados(); 
 
 				break;
 						

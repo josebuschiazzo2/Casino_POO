@@ -3,16 +3,19 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
 exports.__esModule = true;
+exports.Dado = void 0;
 var Tragamoneda_1 = require("./Tragamoneda");
 /* El juego de Craps se juega con dos dados. Se lanzarán dos dados en cada partida.
 Gana si la suma de los dados es 7 u 11 y pierde si la suma es igual a 2, 3 ó 12 **CRAPS**.
@@ -63,16 +66,13 @@ var Dado = /** @class */ (function (_super) {
                 console.log("ha salido ", resultado, "No ha ganado ningun premio pero usted puede lanzar nuevamente");
                 console.log("*******");
                 console.log("su siguiente lanzamiento es: ");
-                this.lanzarDados();
+                //this.lanzarDados(); 
                 break;
             default:
                 console.log("ha salido ", resultado, "**CRAPS** usted ah perdido");
                 break;
         }
         return resultado;
-    };
-    Dado.prototype.getPremio = function () {
-        return this.premio;
     };
     return Dado;
 }(Tragamoneda_1.Tragamoneda)); // fin clase Dado
