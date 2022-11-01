@@ -3,27 +3,27 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
 exports.__esModule = true;
+exports.TresEnLinea = void 0;
 var Tragamoneda_1 = require("./Tragamoneda");
 var TresEnLinea = /** @class */ (function (_super) {
     __extends(TresEnLinea, _super);
     function TresEnLinea(nombre, apuesta, probabilidad) {
         var _this = _super.call(this, nombre, apuesta, probabilidad) || this;
-        _this.rodillo1 = new Array < string >
-            private;
-        _this.rodillo2 = new Array < string >
-            private;
-        _this.rodillo3 = new Array < string >
-            private;
+        _this.rodillo1 = new Array;
+        _this.rodillo2 = new Array;
+        _this.rodillo3 = new Array;
         _this.rodillo1 = ["Manzana", "Pera", "Limon", "Wild", "Siete", "Cereza"];
         _this.rodillo2 = ["Manzana", "Pera", "Limon", "Wild", "Siete", "Cereza"];
         _this.rodillo3 = ["Manzana", "Pera", "Limon", "Wild", "Siete", "Cereza"];
