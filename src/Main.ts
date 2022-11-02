@@ -63,6 +63,7 @@ switch (index) {
         console.log(fruits.getPremio());
         console.log(fruits.obtenerPozo())
       }
+      
      
         break; 
 
