@@ -29,7 +29,11 @@ export class TresEnLinea extends Tragamoneda implements Maquina{
 		
 	}
 	setApuesta(cantidad: number): void {
-		this.apuesta = cantidad;
+		if (cantidad <= 1){
+			this.apuesta = cantidad;
+		}else {
+			console.log("apuesta incorrecta, ingrese un valor mayor a 0");
+		}
 	}
 	getPremio(): number {
 		
@@ -37,18 +41,18 @@ export class TresEnLinea extends Tragamoneda implements Maquina{
 		switch (this.posicionFinalRodillos) {
 			case 1:
 				premio = this.pozo;
-				this.pozo = this.pozo;
+				this.pozo = 3000;
 				break;
 
 
 			case 2:
 				premio = this.apuesta*1.5;
-				this.pozo = this.apuesta + this.pozo;
+				this.pozo = Number(this.apuesta) + this.pozo;
 				break;
 
 			default:
 				premio = 0;
-				this.pozo = this.pozo + this.apuesta*2;
+				this.pozo = this.pozo + Number(this.apuesta*2);
 				break;
 		}
 		
