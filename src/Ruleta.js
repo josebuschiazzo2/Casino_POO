@@ -42,20 +42,26 @@ var Ruleta = /** @class */ (function (_super) {
     Ruleta.prototype.setApuesta = function (papuesta) {
         this.apuesta = papuesta;
     };
+    Ruleta.prototype.setGameName = function (ngame) {
+        this.game = ngame;
+    };
+    Ruleta.prototype.setNumber = function (pnumber) {
+        this.cnumber = pnumber;
+    };
     Ruleta.prototype.getPremio = function () {
         var premio = 0;
-        if ((this.nombre == "color" || this.nombre == "Color") && this.ccolor == this.probabilidad)
+        if ((this.game == "color" || this.game == "Color") && this.ccolor == this.cnumber)
             premio = this.apuesta * 2;
-        if ((this.nombre == "parimpar" || this.nombre == "ParImpar") && this.cpar == this.probabilidad)
+        if ((this.game == "parimpar" || this.game == "ParImpar") && this.cpar == this.cnumber)
             premio = this.apuesta * 2;
-        if ((this.nombre == "columna" || this.nombre == "Columna") && this.ccolumna == this.probabilidad)
+        if ((this.game == "columna" || this.game == "Columna") && this.ccolumna == this.cnumber)
             premio = this.apuesta * 3;
-        if ((this.nombre == "docena" || this.nombre == "Docena") && this.cdocena == this.probabilidad)
+        if ((this.game == "docena" || this.game == "Docena") && this.cdocena == this.cnumber)
             premio = this.apuesta * 3;
         for (var i = 0; i < 4; i++)
-            if ((this.nombre == "cuadro" || this.nombre == "Cuadro") && this.ccuadro[i] == this.probabilidad)
+            if ((this.game == "cuadro" || this.nombre == "Cuadro") && this.ccuadro[i] == this.cnumber)
                 premio = this.apuesta * 9;
-        if ((this.nombre == "pleno" || this.nombre == "Pleno") && this.ccasilla == this.probabilidad)
+        if ((this.game == "pleno" || this.game == "Pleno") && this.ccasilla == this.cnumber)
             premio = this.apuesta * 36;
         return premio;
     };
@@ -64,7 +70,7 @@ var Ruleta = /** @class */ (function (_super) {
         var min = 0;
         var casilla = 0; // hay 37
         var color = "Neutro"; // Rojo, Negro, neutro (que sea impar no significa que sea rojo, por ejemplo el 10 y 11 son Negro both)
-        var par = true; //Par o impar
+        var par = true; // Par o impar
         var docena = 0; // hay 3 docenas y el cero no entra
         var columna = 0; // hay 3 Columnas y el cero no entra
         var cuadro = [0, 0, 0, 0]; // hay 24 cuadros pero una casilla puede tener hasta 4 cuadros y el cero no entra
@@ -352,9 +358,6 @@ var Ruleta = /** @class */ (function (_super) {
         console.log(color + " el " + casilla + "(Par:" + par + " - Docena:" + docena + " - Columna:" + columna + ")");
         return [color, casilla, par, docena, columna, cuadro];
     }; //fin de LanzarRuleta()
-    Ruleta.prototype.apostar = function () {
-        throw new Error("Function not implemented.");
-    };
     return Ruleta;
 }(Tragamoneda_1.Tragamoneda)); // fin clase Ruleta
 exports.Ruleta = Ruleta;
