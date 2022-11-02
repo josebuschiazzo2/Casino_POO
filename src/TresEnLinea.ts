@@ -43,12 +43,12 @@ export class TresEnLinea extends Tragamoneda implements Maquina{
 
 			case 2:
 				premio = this.apuesta*1.5;
-				this.pozo = this.apuesta + this.pozo;
+				this.pozo = Number(this.apuesta) + this.pozo;
 				break;
 
 			default:
 				premio = 0;
-				this.pozo = this.pozo + this.apuesta*2;
+				this.pozo = this.pozo + Number(this.apuesta)*2;
 				break;
 		}
 		
