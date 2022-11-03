@@ -41,12 +41,7 @@ var TresEnLinea = /** @class */ (function (_super) {
         return _this;
     }
     TresEnLinea.prototype.setApuesta = function (cantidad) {
-        if (cantidad <= 1) {
-            this.apuesta = cantidad;
-        }
-        else {
-            console.log("apuesta incorrecta, ingrese un valor mayor a 0");
-        }
+        this.apuesta = cantidad;
     };
     TresEnLinea.prototype.getPremio = function () {
         var premio;
