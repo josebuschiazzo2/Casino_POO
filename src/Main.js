@@ -41,30 +41,50 @@ oasis.agregarJuegos(fruits);
 var index = readlineSync.keyInSelect(juegos, 'a continuacion coloque el numero del juego deseado');
 switch (index) {
     case 0:
-        var userName = readlineSync.question(' ¿Como te llamas? ');
+        var userName = readlineSync.question('Como te llamas? ');
         console.log('Bienvenido ' + userName + ' !');
         console.log('Comencemos a jugar al ' + juegoDeDados1.obtenerNombre());
-        var apuesta = readlineSync.question(' ¿cuanto quiere apostar? ');
+        var apuesta = readlineSync.question('cuanto quiere apostar? ');
         juegoDeDados1.setApuesta(apuesta);
-        while (readlineSync.keyInYN(' ¿Quiere lanzar los dados?')) {
+        while (readlineSync.keyInYN('Quiere lanzar los dados?')) {
             // 'Y' key was pressed.
             console.log(juegoDeDados1.lanzarDados());
         }
         break;
     case 1:
-        console.log(juegoDeRuleta1.lanzarRuleta());
+        var userName = readlineSync.question('Como te llamas? ');
+        console.log('Bienvenido ' + userName + ' !');
+        console.log('Comencemos a jugar al ' + juegoDeRuleta1.obtenerNombre());
+        var apuesta = readlineSync.question('cuanto quiere apostar? ');
+        juegoDeRuleta1.setApuesta(apuesta);
+        var juego = readlineSync.question('que juego quiere ejecutar?');
+        juegoDeRuleta1.setGameName(juego);
+        var nro = readlineSync.question('que numero desea?');
+        juegoDeRuleta1.setNumber(nro);
+        while (readlineSync.keyInYN('Quiere girar la ruleta?')) {
+            // 'Y' key was pressed.
+            console.log(juegoDeRuleta1.lanzarRuleta());
+            console.log(juegoDeRuleta1.getPremio());
+        }
         break;
     case 2:
-        var userName = readlineSync.question(' ¿Como te llamas? ');
+        var userName = readlineSync.question('Como te llamas? ');
         console.log('Bienvenido ' + userName + ' !');
         console.log('Comencemos a jugar al ' + fruits.obtenerNombre());
-        var apuesta = readlineSync.question(' ¿cuanto quiere apostar? ');
-        fruits.setApuesta(apuesta);
-        while (readlineSync.keyInYN(' ¿Quiere girar los rodillos?')) {
+        var apuesta = readlineSync.question('cuanto quiere apostar? ');
+        if (apuesta >= 1) {
+            fruits.setApuesta(apuesta);
+        }
+        else {
+            console.log("apuesta incorrecta, ingrese un valor mayor a 0");
+            var apuesta = readlineSync.question('cuanto quiere apostar? ');
+            fruits.setApuesta(apuesta);
+        }
+        while (readlineSync.keyInYN('Quiere girar los rodillos?')) {
             // 'Y' key was pressed.
             fruits.girar();
-            console.log(fruits.getPremio());
-            console.log(fruits.obtenerPozo());
+            console.log("su premio es \n", fruits.getPremio());
+            console.log("pozo acumulado\n ", fruits.obtenerPozo());
         }
         break;
     default:
