@@ -61,7 +61,7 @@ var TresEnLinea = /** @class */ (function (_super) {
                 break;
             default:
                 premio = 0;
-                this.pozo = this.pozo + Number(this.apuesta * 2);
+                this.pozo = this.pozo + Number(this.apuesta) * 2;
                 break;
         }
         return premio;
