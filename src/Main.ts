@@ -60,29 +60,81 @@ switch (index) {
       var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
       juegoDeDados1.setApuesta(apuesta);
       while (readlineSync.keyInYN('Quiere lanzar los dados?')) {
-        // 'Y' key was pressed.
+        
         console.log(juegoDeDados1.lanzarDados());
       }
        
         break;
 
     case 1:
-    var userName = readlineSync.question('Como te llamas? ');
-    console.log('Bienvenido ' + userName + ' !');
-    console.log('Comencemos a jugar al ' + juegoDeRuleta1.obtenerNombre());
-    var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
-    juegoDeRuleta1.setApuesta(apuesta);
-    var juego:string = readlineSync.question('que juego quiere ejecutar?');
-    juegoDeRuleta1.setGameName(juego);
-    var nro:number = readlineSync.question('que numero desea?');
-    juegoDeRuleta1.setNumber(nro);
-    while (readlineSync.keyInYN('Quiere girar la ruleta?')) {
+      var userName = readlineSync.question('Como te llamas? ');
+      console.log('Bienvenido ' + userName + ' !');
+      console.log('Comencemos a jugar al ' + juegoDeRuleta1.obtenerNombre());
+      console.log('Usted puede optar por 6 tipos de Apuestas:');
+      console.log('1- Elegir un Color (Rojo o Negro) // Paga la Apuesta x2');
+      console.log('2- ParImpar // Paga la Apuesta x2');
+      console.log('3- Columna (1, 2 o 3) // Paga la Apuesta x3');
+      console.log('4- Docena (1, 2 o 3) // Paga la Apuesta x3');
+      console.log('5- Cuadro (del 1 al 24) // Paga la Apuesta x9');
+      console.log('6- Pleno (del 0 al 36) // Paga la Apuesta x36');
+      
+      while (readlineSync.keyInYN('Quiere Juegar?')) {
       // 'Y' key was pressed.
-        console.log(juegoDeRuleta1.lanzarRuleta());
-        console.log(juegoDeRuleta1.getPremio());
+      var apuesta:number = readlineSync.question('Cuanto quiere apostar? ');
+      juegoDeRuleta1.setApuesta(apuesta);
+      var juego:string = readlineSync.question('Qué juego quiere ejecutar?');
+      juegoDeRuleta1.setGameName(juego);
+      
+      switch(juego){
+          case "color": 
+          case "Color":
+          var nro:number = readlineSync.question('Qué Color desea? (Negro -> 0 y Rojo -> 1):');
+          juegoDeRuleta1.setNumber(nro);
+          break;
+
+          case "parimpar": 
+          case "ParImpar":
+          var nro:number = readlineSync.question('Qué desea? (Impar -> 0 y Par -> 1):');
+          juegoDeRuleta1.setNumber(nro);
+          break;
+
+          case "columna": 
+          case "Columna":
+          var nro:number = readlineSync.question('Qué Columna desea? (1, 2 o 3):');
+          juegoDeRuleta1.setNumber(nro);
+          break;
+
+          case "docena": 
+          case "Docena":
+          var nro:number = readlineSync.question('Qué Docena desea? (1, 2 o 3):');
+          juegoDeRuleta1.setNumber(nro);
+          break;
+
+          case "cuadro": 
+          case "Cuadro":
+          var nro:number = readlineSync.question('Qué Cuadro desea? (del 1 al 24):');
+          juegoDeRuleta1.setNumber(nro);
+          break;
+
+          case "pleno": 
+          case "Pleno":
+          var nro:number = readlineSync.question('Qué número desea? (del 0 al 36):');
+          juegoDeRuleta1.setNumber(nro);
+          break;
+          
+          default:
+          console.log('Por default entro en Pleno..');
+          var nro:number = readlineSync.question('Qué número desea? (del 0 al 36):');
+          juegoDeRuleta1.setNumber(nro);
+          break;
+      }
+      
+      console.log(juegoDeRuleta1.lanzarRuleta());
+      console.log(juegoDeRuleta1.getPremio());
     }
 
-        break;
+      break;
+
     case 2:
       var userName = readlineSync.question('Como te llamas? ');
       console.log('Bienvenido ' + userName + ' !');
@@ -97,7 +149,7 @@ switch (index) {
       }
       
       while (readlineSync.keyInYN('Quiere girar los rodillos?')) {
-        // 'Y' key was pressed.
+        
         fruits.girar();
         var premio = fruits.getPremio();
        
@@ -126,7 +178,7 @@ switch (index) {
 /*    
 function jugar(){
   if (readlineSync.keyInYN('Quiere girar los rodillos?')) {
-    // 'Y' key was pressed.
+    
     fruits.girar(); 
     console.log(fruits.getPremio());
     // Do something...
@@ -140,7 +192,7 @@ function jugar(){
 
 //Readline para Preguntar Si o No Y/N
 if (readlineSync.keyInYN('Quieres jugar a ' + Fruits.obtenerNombre() + "?")) {
-    // 'Y' key was pressed.
+    
     Fruits.setApuesta(apuesta); 
     console.log('iniciando ' + Fruits.obtenerNombre());
     console.log("-------");
