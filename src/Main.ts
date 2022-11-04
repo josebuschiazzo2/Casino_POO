@@ -1,16 +1,14 @@
 import { Casino } from './Casino';
+import { CincoEnLinea } from './CincoEnLinea';
 import { Dado } from './JuegoDeDados';
 import { Ruleta } from './Ruleta';
 import { TresEnLinea } from './TresEnLinea';
 
-// loco casino Royal
+// logo casino Royal
 console.log('                               ')
 console.log('                               ')
 const art = require('ascii-art')
 
-console.log(art.style('     *** CASINO ROYAL ***', 'red'))
-console.log(art.style(' ', 'white'))
-/////////////
 
 const figlet = require('figlet')
 
@@ -32,21 +30,31 @@ fs.writeFileSync(archivoBienvenida, contenidoBienvenida);
 //console.log('**** este es el saludo de bienvenida ****')
 const saludoDeBienvenida = contenidoBienvenida;
 
-console.log(saludoDeBienvenida);
-console.log('-------------------------------')
-console.log('                               ')
-console.log('Por favor selecciones uno de los juegos de la lista');
+
 let juegoDeDados1:Dado = new Dado("juego de dados",1,0.5);
 let juegoDeRuleta1:Ruleta= new Ruleta("Ruleta",1,12);
 let fruits:TresEnLinea= new TresEnLinea("Tres en linea",10,3);
+let cinco: CincoEnLinea= new CincoEnLinea("Cinco en linea",10,1);
 let juegos = new Array<string>
-juegos = [juegoDeDados1.obtenerNombre(),juegoDeRuleta1.obtenerNombre(),fruits.obtenerNombre()]; // array de prueba
-let oasis:Casino = new Casino("Oasis");
+juegos = [juegoDeDados1.obtenerNombre(),juegoDeRuleta1.obtenerNombre(),fruits.obtenerNombre(),cinco.obtenerNombre()]; // array de juegos
 
-oasis.agregarJuegos(juegoDeDados1);
-oasis.agregarJuegos(juegoDeRuleta1);
-oasis.agregarJuegos(fruits);
+let royal:Casino = new Casino("royal");
+royal.agregarJuegos(juegoDeDados1);
+royal.agregarJuegos(juegoDeRuleta1);
+royal.agregarJuegos(fruits);
+royal.agregarJuegos(cinco);
+console.log(royal.toString());
 
+let bucle:boolean=true;
+while(bucle){
+  console.clear();
+  console.log('                               ');
+  console.log(art.style('     *** CASINO ROYAL ***', 'red'));
+  console.log(art.style(' ', 'white'));
+  console.log(saludoDeBienvenida);
+console.log('                               ');
+console.log('                               ');
+console.log('Por favor selecciones uno de los juegos de la lista');
 
 // readline para elegir opciones de un arreglo y elegir el juego
 
@@ -58,6 +66,13 @@ switch (index) {
       console.log('Bienvenido ' + userName + ' !');
       console.log('Comencemos a jugar al ' + juegoDeDados1.obtenerNombre());
       var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
+      while(apuesta <= 0 || isNaN(apuesta)){ 
+        console.log(art.style(' ', 'red'));  
+        console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
+        console.log(art.style(' ', 'white'));
+        var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
+        
+      }
       juegoDeDados1.setApuesta(apuesta);
       while (readlineSync.keyInYN('Quiere lanzar los dados?')) {
         
@@ -70,67 +85,78 @@ switch (index) {
       var userName = readlineSync.question('Como te llamas? ');
       console.log('Bienvenido ' + userName + ' !');
       console.log('Comencemos a jugar al ' + juegoDeRuleta1.obtenerNombre());
-      console.log('Usted puede optar por 6 tipos de Apuestas:');
+      console.log(art.style('Usted puede optar por 6 tipos de Apuestas:', 'yellow'));
       console.log('1- Elegir un Color (Rojo o Negro) // Paga la Apuesta x2');
       console.log('2- ParImpar // Paga la Apuesta x2');
       console.log('3- Columna (1, 2 o 3) // Paga la Apuesta x3');
       console.log('4- Docena (1, 2 o 3) // Paga la Apuesta x3');
       console.log('5- Cuadro (del 1 al 24) // Paga la Apuesta x9');
       console.log('6- Pleno (del 0 al 36) // Paga la Apuesta x36');
+      console.log(art.style(' ', 'white'));
       
       while (readlineSync.keyInYN('Quiere Juegar?')) {
       // 'Y' key was pressed.
+
       var apuesta:number = readlineSync.question('Cuanto quiere apostar? ');
+      while(apuesta <= 0 || isNaN(apuesta)){
+        console.log(art.style(' ', 'red'));  
+        console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
+        console.log(art.style(' ', 'white'));
+        var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
+        
+      }
+
       juegoDeRuleta1.setApuesta(apuesta);
-      var juego:string = readlineSync.question('Qué juego quiere ejecutar?');
+      var juego:string = readlineSync.question('Que juego quiere ejecutar?');
       juegoDeRuleta1.setGameName(juego);
       
       switch(juego){
           case "color": 
           case "Color":
-          var nro:number = readlineSync.question('Qué Color desea? (Negro -> 0 y Rojo -> 1):');
+          var nro:number = readlineSync.question('Que Color desea? (Negro -> 0 y Rojo -> 1):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "parimpar": 
           case "ParImpar":
-          var nro:number = readlineSync.question('Qué desea? (Impar -> 0 y Par -> 1):');
+          var nro:number = readlineSync.question('Que desea? (Impar -> 0 y Par -> 1):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "columna": 
           case "Columna":
-          var nro:number = readlineSync.question('Qué Columna desea? (1, 2 o 3):');
+          var nro:number = readlineSync.question('Que Columna desea? (1, 2 o 3):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "docena": 
           case "Docena":
-          var nro:number = readlineSync.question('Qué Docena desea? (1, 2 o 3):');
+          var nro:number = readlineSync.question('Que Docena desea? (1, 2 o 3):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "cuadro": 
           case "Cuadro":
-          var nro:number = readlineSync.question('Qué Cuadro desea? (del 1 al 24):');
+          var nro:number = readlineSync.question('Que Cuadro desea? (del 1 al 24):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "pleno": 
           case "Pleno":
-          var nro:number = readlineSync.question('Qué número desea? (del 0 al 36):');
+          var nro:number = readlineSync.question('Que numero desea? (del 0 al 36):');
           juegoDeRuleta1.setNumber(nro);
           break;
           
           default:
           console.log('Por default entro en Pleno..');
-          var nro:number = readlineSync.question('Qué número desea? (del 0 al 36):');
+          var nro:number = readlineSync.question('Que numero desea? (del 0 al 36):');
           juegoDeRuleta1.setNumber(nro);
           break;
       }
-      
-      console.log(juegoDeRuleta1.lanzarRuleta());
-      console.log(juegoDeRuleta1.getPremio());
+      console.log(art.style(' ', 'red'));
+      juegoDeRuleta1.lanzarRuleta();
+      console.log('Su premio es $',juegoDeRuleta1.getPremio());
+      console.log(art.style(' ', 'white'));
     }
 
       break;
@@ -140,72 +166,75 @@ switch (index) {
       console.log('Bienvenido ' + userName + ' !');
       console.log('Comencemos a jugar al ' + fruits.obtenerNombre());
       var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
-      if(apuesta >= 1){
-        fruits.setApuesta(apuesta);
-      } else {
-        console.log("apuesta incorrecta, ingrese un valor mayor a 0");
-        var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
-        fruits.setApuesta(apuesta);
-      }
       
-      while (readlineSync.keyInYN('Quiere girar los rodillos?')) {
+        while(apuesta <= 0 || isNaN(apuesta)){
+        console.log(art.style(' ', 'red'));  
+        console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
+        console.log(art.style(' ', 'white'));
+        var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
         
+      } fruits.setApuesta(apuesta);
+
+      while (readlineSync.keyInYN('Quiere girar los rodillos?')) {
+        console.log(art.style(' ', 'blue'));
         fruits.girar();
+        console.log(art.style(' ', 'white'));
         var premio = fruits.getPremio();
        
         console.log("su premio es \n", premio);
         
         ////  segui con la condicion de pedir apuesta /// hacer funcion de apostar
-        if(premio ==0 ){
+        while(premio = 0 ){
+           
           
         }
         console.log("pozo acumulado\n ",fruits.obtenerPozo())
       }
      
-        break; 
+        break;
+
+        case 3:
+          var userName = readlineSync.question('Como te llamas? ');
+          console.log('Bienvenido ' + userName + ' !');
+          console.log('Comencemos a jugar al ' + cinco.obtenerNombre());
+          var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
+          
+            while(apuesta <= 0 || isNaN(apuesta)){
+            console.log(art.style(' ', 'red'));  
+            console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
+            console.log(art.style(' ', 'white'));
+            var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
+            
+          } cinco.setApuesta(apuesta);
+    
+          while (readlineSync.keyInYN('Quiere girar los rodillos?')) {
+            console.log(art.style(' ', 'blue'));
+            cinco.girar();
+            console.log(art.style(' ', 'white'));
+            var premio = cinco.getPremio();
+           
+            console.log("su premio es \n", premio);
+            
+            ////  segui con la condicion de pedir apuesta /// hacer funcion de apostar
+            while(premio = 0 ){
+               
+              
+            }
+            console.log("pozo acumulado\n ",cinco.obtenerPozo())
+          }
+         
+            break;        
+
 
     default:
+      
       console.log('                               ')
       console.log('                               ')
-        console.log( 'ha seleccionado Salir, gracias por visitarnos vuelva pontro');
+        console.log( 'ha seleccionado CANCEL, usted ha salido del casino, gracias por visitarnos vuelva pronto');
+        bucle = false;
         break;
 }
 
-
-// console.log('Ok, ' + juegos[index]);
-
-
-/*    
-function jugar(){
-  if (readlineSync.keyInYN('Quiere girar los rodillos?')) {
-    
-    fruits.girar(); 
-    console.log(fruits.getPremio());
-    // Do something...
-  } else {
-    // Another key was pressed.
-    console.log('Searching another...');
-    // Do something...
- } 
-  
 }
 
-//Readline para Preguntar Si o No Y/N
-if (readlineSync.keyInYN('Quieres jugar a ' + Fruits.obtenerNombre() + "?")) {
-    
-    Fruits.setApuesta(apuesta); 
-    console.log('iniciando ' + Fruits.obtenerNombre());
-    console.log("-------");
-    console.log('Su jugada es ' + Fruits.girar());
-    console.log("-------");
-    console.log(Fruits.getPremio());
-    // Do something...
-  } else {
-    // Another key was pressed.
-    console.log('Searching another...');
-    // Do something...
- } 
-*/
-
-  
 
