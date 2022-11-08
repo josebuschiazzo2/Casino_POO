@@ -35,6 +35,11 @@ fs.writeFileSync(txt_dados, reglas_dados);
 const reglaJuegoDados = reglas_dados;
 console.log('                               ')
 
+const txt_ruleta = 'ruleta.txt';
+const reglas_ruleta = '** REGLAS DE JUEGO DE RULETA **\nEl juego de ruleta se juega con una bola y un disco de ruleta, del 0 al 36.\nCada nùmero tiene un color, atributo Par o Impar y pertenece a una columna, docena y cuadrante.\nSe lanzará la bola al disco de ruleta dados en cada partida.\nSe Gana si acierta en el juego elegido y el resultado del mismo.\nLas apuestas a esta opción no se pueden modificar hasta concluir la jugada.'
+fs.writeFileSync(txt_ruleta, reglas_ruleta);
+const reglaJuegoRuleta = reglas_ruleta;
+console.log('                               ');
 
 let juegoDeDados1:Dado = new Dado("juego de dados",1,0.5);
 let juegoDeRuleta1:Ruleta= new Ruleta("Ruleta",1,12);
@@ -103,6 +108,9 @@ switch (index) {
       var userName = readlineSync.question('Como te llamas? ');
       console.log('Bienvenido ' + userName + ' !');
       console.log('Comencemos a jugar al ' + juegoDeRuleta1.obtenerNombre());
+      console.log(art.style(' ', 'green'));
+      console.log(reglaJuegoRuleta);
+      console.log(art.style(' ', 'white'));
       console.log(art.style('Usted puede optar por 6 tipos de Apuestas:', 'yellow'));
       console.log('1- Elegir un Color (Rojo o Negro) // Paga la Apuesta x2');
       console.log('2- ParImpar // Paga la Apuesta x2');

@@ -1,0 +1,6 @@
+** REGLAS DE JUEGO DE RULETA **
+El juego de ruleta se juega con una bola y un disco de ruleta, del 0 al 36.
+Cada nùmero tiene un color, atributo Par o Impar y pertenece a una columna, docena y cuadrante.
+Se lanzará la bola al disco de ruleta dados en cada partida.
+Se Gana si acierta en el juego elegido y el resultado del mismo.
+Las apuestas a esta opción no se pueden modificar hasta concluir la jugada.
