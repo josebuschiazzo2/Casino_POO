@@ -17,12 +17,8 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.Dado = void 0;
 var Tragamoneda_1 = require("./Tragamoneda");
-/* El juego de Craps se juega con dos dados. Se lanzarán dos dados en cada partida.
-Gana si la suma de los dados es 7 u 11 y pierde si la suma es igual a 2, 3 ó 12 **CRAPS**.
-Cualquier otra suma de los dados Le conseguirá otro lanzamiento al jugador. El jugador debe seguir lanzando
-hasta que se llegue a una decisión (gana o pierde).
-Las apuestas a esta opción no se pueden modificar hasta concluir la jugada.
-*/
+var readlineSync = require('readline-sync');
+var art = require('ascii-art');
 var Dado = /** @class */ (function (_super) {
     __extends(Dado, _super);
     function Dado(nombre, apuesta, probabilidad) {
@@ -30,6 +26,17 @@ var Dado = /** @class */ (function (_super) {
         _this.winner = 0;
         return _this;
     }
+    Dado.prototype.apostar = function () {
+        var apuesta = readlineSync.question('cuanto quiere apostar? ');
+        while (apuesta <= 0 || isNaN(apuesta)) {
+            console.log(art.style(' ', 'red'));
+            console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
+            console.log(art.style(' ', 'white'));
+            var apuesta = readlineSync.question('cuanto quiere apostar? ');
+        }
+        ;
+        return apuesta;
+    };
     Dado.prototype.getPremio = function () {
         return this.apuesta * this.winner;
     };
@@ -42,7 +49,6 @@ var Dado = /** @class */ (function (_super) {
         var dado1;
         var dado2;
         var resultado;
-        var winner;
         dado1 = Math.floor(Math.random() * (max - min + 1) + min);
         dado2 = Math.floor(Math.random() * (max - min + 1) + min);
         console.log("Lanzamiento de dados");
@@ -52,11 +58,11 @@ var Dado = /** @class */ (function (_super) {
         switch (resultado) {
             case 7:
                 this.winner = 5;
-                console.log("ha salido ", resultado, " Felicitaciones usted ha ganado $$", this.apuesta * this.winner); // winner multiplica la apuesta en getPremio
+                console.log("ha salido ", resultado, " Felicitaciones usted ha ganado $$", this.apuesta * this.winner);
                 break;
             case 11:
                 this.winner = 15;
-                console.log("ha salido ", resultado, " Felicitaciones usted ha ganado $$", this.apuesta * this.winner); // winner multiplica la apuesta en getPremio
+                console.log("ha salido ", resultado, " Felicitaciones usted ha ganado $$", this.apuesta * this.winner);
                 break;
             case 4:
             case 5:
@@ -64,9 +70,7 @@ var Dado = /** @class */ (function (_super) {
             case 8:
             case 10:
                 console.log("ha salido ", resultado, "No ha ganado ningun premio pero usted puede lanzar nuevamente");
-                console.log("*******");
-                console.log("su siguiente lanzamiento es: ");
-                //this.lanzarDados(); 
+                console.log("........");
                 break;
             default:
                 console.log("ha salido ", resultado, "**CRAPS** usted ah perdido");

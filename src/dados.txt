@@ -1,0 +1,8 @@
+** REGLAS DE JUEGO DE DADOS "CRAPS" **
+El juego de Craps se juega con dos dados.
+Se lanzarán dos dados en cada partida.
+Gana si la suma de los dados es 7 u 11 y pierde si la suma es igual a 2, 3 ó 12 **CRAPS**
+Cualquier otra suma de los dados Le conseguirá otro lanzamiento al jugador.
+El jugador debe seguir lanzando.
+hasta que se llegue a una decisión (gana o pierde).
+Las apuestas a esta opción no se pueden modificar hasta concluir la jugada.

@@ -20,8 +20,14 @@ var archivoBienvenida = 'saludoDeBienvenida.txt';
 var contenidoBienvenida = 'Bienvenido A Casino Royal, "disfrute de nuestros juegos"\n\n       **advertencia**\n\n“el juego de azar en exceso es nocivo para la salud”';
 console.log('                               ');
 fs.writeFileSync(archivoBienvenida, contenidoBienvenida);
-//console.log('**** este es el saludo de bienvenida ****')
+//('**** este es el saludo de bienvenida ****')
 var saludoDeBienvenida = contenidoBienvenida;
+//('**** reglas de juego de dados ****')
+var txt_dados = 'dados.txt';
+var reglas_dados = '** REGLAS DE JUEGO DE DADOS "CRAPS" **\nEl juego de Craps se juega con dos dados.\nSe lanzarán dos dados en cada partida.\nGana si la suma de los dados es 7 u 11 y pierde si la suma es igual a 2, 3 ó 12 **CRAPS**\nCualquier otra suma de los dados Le conseguirá otro lanzamiento al jugador.\nEl jugador debe seguir lanzando.\nhasta que se llegue a una decisión (gana o pierde).\nLas apuestas a esta opción no se pueden modificar hasta concluir la jugada.';
+fs.writeFileSync(txt_dados, reglas_dados);
+var reglaJuegoDados = reglas_dados;
+console.log('                               ');
 var juegoDeDados1 = new JuegoDeDados_1.Dado("juego de dados", 1, 0.5);
 var juegoDeRuleta1 = new Ruleta_1.Ruleta("Ruleta", 1, 12);
 var fruits = new TresEnLinea_1.TresEnLinea("Tres en linea", 10, 3);
@@ -48,19 +54,35 @@ while (bucle) {
     var index = readlineSync.keyInSelect(juegos, 'a continuacion coloque el numero del juego deseado');
     switch (index) {
         case 0:
+            console.log('Bienvenido al ' + juegoDeDados1.obtenerNombre());
+            console.log('                               ');
             var userName = readlineSync.question('Como te llamas? ');
+            console.log('                               ');
             console.log('Bienvenido ' + userName + ' !');
+            console.log('                               ');
             console.log('Comencemos a jugar al ' + juegoDeDados1.obtenerNombre());
-            var apuesta = readlineSync.question('cuanto quiere apostar? ');
-            while (apuesta <= 0 || isNaN(apuesta)) {
-                console.log(art.style(' ', 'red'));
-                console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
-                console.log(art.style(' ', 'white'));
-                var apuesta = readlineSync.question('cuanto quiere apostar? ');
-            }
-            juegoDeDados1.setApuesta(apuesta);
-            while (readlineSync.keyInYN('Quiere lanzar los dados?')) {
-                console.log(juegoDeDados1.lanzarDados());
+            console.log(art.style(' ', 'green'));
+            console.log(reglaJuegoDados);
+            console.log(art.style(' ', 'white'));
+            /// funcion apostar
+            juegoDeDados1.setApuesta(juegoDeDados1.apostar());
+            var lanzar = readlineSync.keyInYN('Quiere lanzar los dados?');
+            if (lanzar) {
+                var lanzamiento = juegoDeDados1.lanzarDados();
+                console.log();
+                if (lanzamiento === 2 || lanzamiento === 3 || lanzamiento === 9 || lanzamiento === 12 || lanzamiento === 7 || lanzamiento === 11) {
+                    var seguir = "y";
+                    while (seguir) {
+                        seguir = readlineSync.keyInYN('Desea continuar jugando?   responder Y o N : ');
+                        if (seguir) {
+                            juegoDeDados1.setApuesta(juegoDeDados1.apostar());
+                            juegoDeDados1.lanzarDados();
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                }
             }
             break;
         case 1:
@@ -75,7 +97,7 @@ while (bucle) {
             console.log('5- Cuadro (del 1 al 24) // Paga la Apuesta x9');
             console.log('6- Pleno (del 0 al 36) // Paga la Apuesta x36');
             console.log(art.style(' ', 'white'));
-            while (readlineSync.keyInYN('Quiere Juegar?')) {
+            while (readlineSync.keyInYN('Quiere Jugar?')) {
                 // 'Y' key was pressed.
                 var apuesta = readlineSync.question('Cuanto quiere apostar? ');
                 while (apuesta <= 0 || isNaN(apuesta)) {
