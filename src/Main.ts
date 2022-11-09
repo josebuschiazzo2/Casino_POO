@@ -41,6 +41,21 @@ fs.writeFileSync(txt_ruleta, reglas_ruleta);
 const reglaJuegoRuleta = reglas_ruleta;
 console.log('                               ');
 
+//'**** reglas del tres en linea ****')
+const txt_Tres_en_linea = 'tresEnLinea.txt';
+const reglas_Tres_en_linea = '** REGLAS DEL JUEGO TRES EN LINEA **\n\nRealice una apuesta .\nGire los rodillos.\nSi dos rodillos son iguales usted gana el valor de su apuesta mas la mitad.\nSi los tres rodillos son iguales usted gana el pozo acumulado.';
+fs.writeFileSync(txt_Tres_en_linea, reglas_Tres_en_linea);
+const reglaJuegoTresEnLinea = reglas_Tres_en_linea;
+console.log('                               ');
+
+//'**** reglas del cinco en linea ****')
+const txt_Cinco_en_linea = 'cincoEnLinea.txt';
+const reglas_Cinco_en_linea = '** REGLAS DEL JUEGO CINCO EN LINEA **\n\nRealice una apuesta .\nGire los rodillos.\nSi dos rodillos consecutivos son iguales usted gana el valor de su apuesta mas la mitad.\nSi los cinco rodillos son iguales usted gana el pozo acumulado.';
+fs.writeFileSync(txt_Cinco_en_linea, reglas_Cinco_en_linea);
+const reglaJuegoCincoEnLinea = reglas_Cinco_en_linea;
+console.log('                               ');
+
+
 let juegoDeDados1:Dado = new Dado("juego de dados",1,0.5);
 let juegoDeRuleta1:Ruleta= new Ruleta("Ruleta",1,12);
 let fruits:TresEnLinea= new TresEnLinea("Tres en linea",10,3);
@@ -191,6 +206,9 @@ switch (index) {
       var userName = readlineSync.question('Como te llamas? ');
       console.log('Bienvenido ' + userName + ' !');
       console.log('Comencemos a jugar al ' + fruits.obtenerNombre());
+      console.log(art.style(' ', 'yellow'));
+      console.log(reglaJuegoTresEnLinea);
+      console.log(art.style(' ', 'white'));
       var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
       
         while(apuesta <= 0 || isNaN(apuesta)){
@@ -220,9 +238,15 @@ switch (index) {
         break;
 
         case 3:
+          
           var userName = readlineSync.question('Como te llamas? ');
           console.log('Bienvenido ' + userName + ' !');
           console.log('Comencemos a jugar al ' + cinco.obtenerNombre());
+         
+          console.log(art.style(' ', 'yellow'));
+          console.log(reglaJuegoCincoEnLinea);
+          console.log(art.style(' ', 'white'));
+
           var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
           
             while(apuesta <= 0 || isNaN(apuesta)){

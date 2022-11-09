@@ -28,6 +28,23 @@ var reglas_dados = '** REGLAS DE JUEGO DE DADOS "CRAPS" **\nEl juego de Craps se
 fs.writeFileSync(txt_dados, reglas_dados);
 var reglaJuegoDados = reglas_dados;
 console.log('                               ');
+var txt_ruleta = 'ruleta.txt';
+var reglas_ruleta = '** REGLAS DE JUEGO DE RULETA **\nEl juego de ruleta se juega con una bola y un disco de ruleta, del 0 al 36.\nCada nùmero tiene un color, atributo Par o Impar y pertenece a una columna, docena y cuadrante.\nSe lanzará la bola al disco de ruleta dados en cada partida.\nSe Gana si acierta en el juego elegido y el resultado del mismo.\nLas apuestas a esta opción no se pueden modificar hasta concluir la jugada.';
+fs.writeFileSync(txt_ruleta, reglas_ruleta);
+var reglaJuegoRuleta = reglas_ruleta;
+console.log('                               ');
+//'**** reglas del tres en linea ****')
+var txt_Tres_en_linea = 'tresEnLinea.txt';
+var reglas_Tres_en_linea = '** REGLAS DEL JUEGO TRES EN LINEA **\n\nRealice una apuesta .\nGire los rodillos.\nSi dos rodillos son iguales usted gana el valor de su apuesta mas la mitad.\nSi los tres rodillos son iguales usted gana el pozo acumulado.';
+fs.writeFileSync(txt_Tres_en_linea, reglas_Tres_en_linea);
+var reglaJuegoTresEnLinea = reglas_Tres_en_linea;
+console.log('                               ');
+//'**** reglas del cinco en linea ****')
+var txt_Cinco_en_linea = 'cincoEnLinea.txt';
+var reglas_Cinco_en_linea = '** REGLAS DEL JUEGO CINCO EN LINEA **\n\nRealice una apuesta .\nGire los rodillos.\nSi dos rodillos consecutivos son iguales usted gana el valor de su apuesta mas la mitad.\nSi los cinco rodillos son iguales usted gana el pozo acumulado.';
+fs.writeFileSync(txt_Cinco_en_linea, reglas_Cinco_en_linea);
+var reglaJuegoCincoEnLinea = reglas_Cinco_en_linea;
+console.log('                               ');
 var juegoDeDados1 = new JuegoDeDados_1.Dado("juego de dados", 1, 0.5);
 var juegoDeRuleta1 = new Ruleta_1.Ruleta("Ruleta", 1, 12);
 var fruits = new TresEnLinea_1.TresEnLinea("Tres en linea", 10, 3);
@@ -89,6 +106,9 @@ while (bucle) {
             var userName = readlineSync.question('Como te llamas? ');
             console.log('Bienvenido ' + userName + ' !');
             console.log('Comencemos a jugar al ' + juegoDeRuleta1.obtenerNombre());
+            console.log(art.style(' ', 'green'));
+            console.log(reglaJuegoRuleta);
+            console.log(art.style(' ', 'white'));
             console.log(art.style('Usted puede optar por 6 tipos de Apuestas:', 'yellow'));
             console.log('1- Elegir un Color (Rojo o Negro) // Paga la Apuesta x2');
             console.log('2- ParImpar // Paga la Apuesta x2');
@@ -156,6 +176,9 @@ while (bucle) {
             var userName = readlineSync.question('Como te llamas? ');
             console.log('Bienvenido ' + userName + ' !');
             console.log('Comencemos a jugar al ' + fruits.obtenerNombre());
+            console.log(art.style(' ', 'yellow'));
+            console.log(reglaJuegoTresEnLinea);
+            console.log(art.style(' ', 'white'));
             var apuesta = readlineSync.question('cuanto quiere apostar? ');
             while (apuesta <= 0 || isNaN(apuesta)) {
                 console.log(art.style(' ', 'red'));
@@ -180,6 +203,9 @@ while (bucle) {
             var userName = readlineSync.question('Como te llamas? ');
             console.log('Bienvenido ' + userName + ' !');
             console.log('Comencemos a jugar al ' + cinco.obtenerNombre());
+            console.log(art.style(' ', 'yellow'));
+            console.log(reglaJuegoCincoEnLinea);
+            console.log(art.style(' ', 'white'));
             var apuesta = readlineSync.question('cuanto quiere apostar? ');
             while (apuesta <= 0 || isNaN(apuesta)) {
                 console.log(art.style(' ', 'red'));
