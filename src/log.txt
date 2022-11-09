@@ -1,0 +1,3 @@
+Nombre: fer
+Apuesta: 100
+Premio: 250

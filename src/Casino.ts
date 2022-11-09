@@ -1,8 +1,11 @@
 import { Tragamoneda } from "./Tragamoneda";
+var fs = require('fs'); 
+import { appendFile } from 'node:fs';
 
 export class Casino {
     private nombre: string;
-    private juegos = new Array<Tragamoneda>
+    private juegos = new Array<Tragamoneda>;
+
 
     constructor(nombre:string){
         this.nombre = nombre;
@@ -26,6 +29,21 @@ export class Casino {
 
     modificarNombre(nuevoNombre:string){
         this.nombre = nuevoNombre;
+    }
+
+    
+    public escribirArchivo(nombreDelArchivo:string, texto:string):void{
+        fs.appendFile(nombreDelArchivo, texto + "\n" , error =>{
+            if (error){
+                console.log('ERROR');
+            }
+        });
+    }
+    
+
+    public leerArchivo(path:string):string{
+        let txtFile:string = fs.readFileSync(path,'utf-8');
+        return txtFile;
     }
 
     

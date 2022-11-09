@@ -17,6 +17,8 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 exports.TresEnLinea = void 0;
 var Tragamoneda_1 = require("./Tragamoneda");
+var readlineSync = require('readline-sync');
+var art = require('ascii-art');
 var TresEnLinea = /** @class */ (function (_super) {
     __extends(TresEnLinea, _super);
     function TresEnLinea(nombre, apuesta, probabilidad) {
@@ -62,7 +64,14 @@ var TresEnLinea = /** @class */ (function (_super) {
         return premio;
     };
     TresEnLinea.prototype.apostar = function () {
-        throw new Error('Method not implemented.');
+        var apuesta = readlineSync.question('cuanto quiere apostar? ');
+        while (apuesta <= 0 || isNaN(apuesta)) {
+            console.log(art.style(' ', 'red'));
+            console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
+            console.log(art.style(' ', 'white'));
+            var apuesta = readlineSync.question('cuanto quiere apostar? ');
+        }
+        return apuesta;
     };
     TresEnLinea.prototype.posicionRodillo = function () {
         var posRodillo = Math.floor(Math.random() * (this.numMax - this.numMin + 1) + this.numMin);
