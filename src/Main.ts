@@ -90,6 +90,7 @@ switch (index) {
       console.log('Bienvenido al ' + juegoDeDados1.obtenerNombre());
       console.log('                               ')
       var userName = readlineSync.question('Como te llamas? ');
+      royal.escribirArchivo("log.txt", "Nombre: " + userName);
       console.log('                               ')
       console.log('Bienvenido ' + userName + ' !');
       console.log('                               ')
@@ -99,23 +100,29 @@ switch (index) {
       console.log(art.style(' ', 'white'));
       /// funcion apostar
       juegoDeDados1.setApuesta(juegoDeDados1.apostar());
+      royal.escribirArchivo("log.txt","Apuesta: " + String(juegoDeDados1.obtenerApuesta()));
       var lanzar:string = readlineSync.keyInYN('Quiere lanzar los dados?')
        if(lanzar) {
         let lanzamiento:number = juegoDeDados1.lanzarDados();
-        console.log();  
+        console.log(); 
+ 
          if (lanzamiento === 2 || lanzamiento === 3 || lanzamiento === 9 || lanzamiento === 12 || lanzamiento === 7 || lanzamiento === 11 ){
           let seguir:string = "y";
+          royal.escribirArchivo("log.txt", "Apuesta: " + String("Lanzamiento: " + lanzamiento));
           while(seguir) {
             seguir = readlineSync.keyInYN('Desea continuar jugando?   responder Y o N : ')
           
             if(seguir){
               juegoDeDados1.setApuesta(juegoDeDados1.apostar());
+              royal.escribirArchivo("log.txt", "Apuesta: " + String(juegoDeDados1.obtenerApuesta()));
               juegoDeDados1.lanzarDados();
             } else {
               break;
             }
           } 
       }
+     
+      royal.escribirArchivo("log.txt", "Premio: " + String(juegoDeDados1.getPremio()));
     }
        break;
 
@@ -123,6 +130,7 @@ switch (index) {
       var userName = readlineSync.question('Como te llamas? ');
       console.log('Bienvenido ' + userName + ' !');
       console.log('Comencemos a jugar al ' + juegoDeRuleta1.obtenerNombre());
+      royal.escribirArchivo("log.txt", "Nombre: " + userName);
       console.log(art.style(' ', 'green'));
       console.log(reglaJuegoRuleta);
       console.log(art.style(' ', 'white'));
@@ -139,6 +147,7 @@ switch (index) {
       // 'Y' key was pressed.
 
       var apuesta:number = readlineSync.question('Cuanto quiere apostar? ');
+      royal.escribirArchivo("log.txt","Apuesta: " + String(apuesta));
       while(apuesta <= 0 || isNaN(apuesta)){
         console.log(art.style(' ', 'red'));  
         console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
@@ -149,54 +158,57 @@ switch (index) {
 
       juegoDeRuleta1.setApuesta(apuesta);
       var juego:string = readlineSync.question('Que juego quiere ejecutar?');
+      royal.escribirArchivo("log.txt","Juego de ruleta: " + juego);
       juegoDeRuleta1.setGameName(juego);
-      
+      var nro:number;
       switch(juego){
           case "color": 
           case "Color":
-          var nro:number = readlineSync.question('Que Color desea? (Negro -> 0 y Rojo -> 1):');
+           nro = readlineSync.question('Que Color desea? (Negro -> 0 y Rojo -> 1):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "parimpar": 
           case "ParImpar":
-          var nro:number = readlineSync.question('Que desea? (Impar -> 0 y Par -> 1):');
+          nro = readlineSync.question('Que desea? (Impar -> 0 y Par -> 1):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "columna": 
           case "Columna":
-          var nro:number = readlineSync.question('Que Columna desea? (1, 2 o 3):');
+          nro = readlineSync.question('Que Columna desea? (1, 2 o 3):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "docena": 
           case "Docena":
-          var nro:number = readlineSync.question('Que Docena desea? (1, 2 o 3):');
+          nro = readlineSync.question('Que Docena desea? (1, 2 o 3):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "cuadro": 
           case "Cuadro":
-          var nro:number = readlineSync.question('Que Cuadro desea? (del 1 al 24):');
+          nro= readlineSync.question('Que Cuadro desea? (del 1 al 24):');
           juegoDeRuleta1.setNumber(nro);
           break;
 
           case "pleno": 
           case "Pleno":
-          var nro:number = readlineSync.question('Que numero desea? (del 0 al 36):');
+          nro= readlineSync.question('Que numero desea? (del 0 al 36):');
           juegoDeRuleta1.setNumber(nro);
           break;
           
           default:
           console.log('Por default entro en Pleno..');
-          var nro:number = readlineSync.question('Que numero desea? (del 0 al 36):');
+          nro= readlineSync.question('Que numero desea? (del 0 al 36):');
           juegoDeRuleta1.setNumber(nro);
           break;
       }
+      royal.escribirArchivo("log.txt","Jugada: " + String(nro));
       console.log(art.style(' ', 'red'));
       juegoDeRuleta1.lanzarRuleta();
       console.log('Su premio es $',juegoDeRuleta1.getPremio());
+      royal.escribirArchivo("log.txt","Premio: " + String(juegoDeRuleta1.getPremio()));
       console.log(art.style(' ', 'white'));
     }
 
@@ -206,32 +218,21 @@ switch (index) {
       var userName = readlineSync.question('Como te llamas? ');
       console.log('Bienvenido ' + userName + ' !');
       console.log('Comencemos a jugar al ' + fruits.obtenerNombre());
+      royal.escribirArchivo("log.txt", "Nombre: " + userName);
       console.log(art.style(' ', 'yellow'));
       console.log(reglaJuegoTresEnLinea);
       console.log(art.style(' ', 'white'));
-      var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
       
-        while(apuesta <= 0 || isNaN(apuesta)){
-        console.log(art.style(' ', 'red'));  
-        console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
-        console.log(art.style(' ', 'white'));
-        var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
-        
-      } fruits.setApuesta(apuesta);
+      fruits.setApuesta(fruits.apostar());
+      royal.escribirArchivo("log.txt", "Apuesta: " + String(fruits.obtenerApuesta()));
 
       while (readlineSync.keyInYN('Quiere girar los rodillos?')) {
         console.log(art.style(' ', 'blue'));
         fruits.girar();
         console.log(art.style(' ', 'white'));
         var premio = fruits.getPremio();
-       
+        royal.escribirArchivo("log.txt", "Premio: " + String(premio));
         console.log("su premio es \n", premio);
-        
-        ////  segui con la condicion de pedir apuesta /// hacer funcion de apostar
-        while(premio = 0 ){
-           
-          
-        }
         console.log("pozo acumulado\n ",fruits.obtenerPozo())
       }
      
@@ -242,13 +243,13 @@ switch (index) {
           var userName = readlineSync.question('Como te llamas? ');
           console.log('Bienvenido ' + userName + ' !');
           console.log('Comencemos a jugar al ' + cinco.obtenerNombre());
-         
+          royal.escribirArchivo("log.txt", "Nombre: " + userName);
           console.log(art.style(' ', 'yellow'));
           console.log(reglaJuegoCincoEnLinea);
           console.log(art.style(' ', 'white'));
 
           var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
-          
+            royal.escribirArchivo("log.txt", "Apuesta: " + String(apuesta));
             while(apuesta <= 0 || isNaN(apuesta)){
             console.log(art.style(' ', 'red'));  
             console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
@@ -262,14 +263,8 @@ switch (index) {
             cinco.girar();
             console.log(art.style(' ', 'white'));
             var premio = cinco.getPremio();
-           
+            royal.escribirArchivo("log.txt", "Premio: " + String(premio));
             console.log("su premio es \n", premio);
-            
-            ////  segui con la condicion de pedir apuesta /// hacer funcion de apostar
-            while(premio = 0 ){
-               
-              
-            }
             console.log("pozo acumulado\n ",cinco.obtenerPozo())
           }
          

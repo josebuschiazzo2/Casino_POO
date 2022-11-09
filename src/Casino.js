@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.Casino = void 0;
+var fs = require('fs');
 var Casino = /** @class */ (function () {
     function Casino(nombre) {
         this.juegos = new Array;
@@ -21,6 +22,17 @@ var Casino = /** @class */ (function () {
     };
     Casino.prototype.modificarNombre = function (nuevoNombre) {
         this.nombre = nuevoNombre;
+    };
+    Casino.prototype.escribirArchivo = function (nombreDelArchivo, texto) {
+        fs.appendFile(nombreDelArchivo, texto + "\n", function (error) {
+            if (error) {
+                console.log('ERROR');
+            }
+        });
+    };
+    Casino.prototype.leerArchivo = function (path) {
+        var txtFile = fs.readFileSync(path, 'utf-8');
+        return txtFile;
     };
     return Casino;
 }());

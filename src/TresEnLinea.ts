@@ -1,5 +1,7 @@
 import { Maquina } from './Maquina';
 import { Tragamoneda } from './Tragamoneda';
+var readlineSync = require('readline-sync');
+const art = require('ascii-art');
 
 export class TresEnLinea extends Tragamoneda implements Maquina{
 	
@@ -57,8 +59,16 @@ export class TresEnLinea extends Tragamoneda implements Maquina{
 		return premio;
 	}
 
-	apostar(): void {
-		throw new Error('Method not implemented.');
+	public apostar(): number {
+		var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
+      while(apuesta <= 0 || isNaN(apuesta)){ 
+        console.log(art.style(' ', 'red'));  
+        console.log("apuesta Incorrecta. ingrese un numero mayor a 0");
+        console.log(art.style(' ', 'white'));
+        var apuesta:number = readlineSync.question('cuanto quiere apostar? ');
+        
+      }
+	  return apuesta;
 	}
 
 	private posicionRodillo():number{
