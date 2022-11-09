@@ -1,0 +1,6 @@
+** REGLAS DEL JUEGO TRES EN LINEA **
+
+Realice una apuesta .
+Gire los rodillos.
+Si dos rodillos son iguales usted gana el valor de su apuesta mas la mitad.
+Si los tres rodillos son iguales usted gana el pozo acumulado.
