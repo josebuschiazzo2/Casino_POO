@@ -1,3 +1,21 @@
 Nombre: fer
 Apuesta: 100
 Premio: 250
+Nombre: 
+Nombre: yoyo
+Apuesta: x
+Jugada: 20
+Juego de ruleta: cuadro
+Premio: 0
+Apuesta: 5
+Nombre: dario
+Apuesta: 20
+Nombre: dario
+Apuesta: Lanzamiento: 7
+Apuesta: 25
+Apuesta: 60
+Apuesta: 25
+Apuesta: 25
+Premio: 0
+Premio: 125
+Nombre: f
